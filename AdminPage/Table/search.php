@@ -47,6 +47,7 @@ if (isset($_GET['search'])) {
                 <th>Table ID</th>
                 <th>Name</th>
                 <th>Capacity</th>
+                <th>Status</th>
                 <th style="width: 190px;">Action</th>
             </tr>
 
@@ -64,7 +65,8 @@ if (isset($_GET['search'])) {
                     echo "<td>" . $row["table_id"] . "</td>";
                     echo "<td>" . $row["name"] . "</td>";
                     echo "<td>" . $row["capacity"] . "</td>";
-                    echo "<td><a href='read.php?id=" . $row["table_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["table_id"] . "'><i class='bx bx-edit'></i></a> | <a href='delete.php?id=" . $row["table_id"] . "'><i class='bx bx-trash'></i></a></td>";
+                    echo "<td>" . $row["status"] . "</td>";
+                    echo "<td><a href='read.php?id=" . $row["table_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["table_id"] . "'><i class='bx bx-edit'></i></a></td>";
                     echo "</tr>";
                 }
             } else {
