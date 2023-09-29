@@ -35,6 +35,11 @@
         <!-- Replace these with your form fields -->
         Name: <input type="text" name="name"><br>
         Capacity: <input type="number" id="myInput" name="capacity"><br>
+        Status: 
+        <select name="status">
+        <option value="Available">Available</option>
+        <option value="Not Available">Not Available</option>
+    </select><br>
         <input type="submit" value="Create">
     </form>
     </section>
