@@ -7,10 +7,11 @@ include '../db.php';
 $table_id = $_POST['table_id'];
 $name = $_POST['name'];
 $capacity = $_POST['capacity'];
+$status = $_POST['status'];
 
 
 // Update the table in the database
-$sql = "UPDATE tables SET name = '$name', capacity = '$capacity' WHERE table_id = '$table_id'";
+$sql = "UPDATE tables SET name = '$name', capacity = '$capacity',status = '$status' WHERE table_id = '$table_id'";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: table.php");
