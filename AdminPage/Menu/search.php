@@ -50,6 +50,7 @@ if (isset($_GET['search'])) {
             <th>Description</th>
             <th>Price</th>
             <th>Category</th>
+            <th>Status</th>
             <th style="width: 100px;">Action</th>
         </tr>
         <?php
@@ -67,7 +68,8 @@ if (isset($_GET['search'])) {
                 echo "<td>" . $row["menu_desc"] . "</td>";
                 echo "<td>" . $row["menu_price"] . "</td>";
                 echo "<td>" . $row["category"] . "</td>";
-                echo "<td><a href='read.php?id=" . $row["menu_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["menu_id"] . "'><i class='bx bx-edit' ></i></a> | <a href='delete.php?id=" . $row["menu_id"] . "'><i class='bx bx-trash' ></i></a></td>";
+                echo "<td>" . $row["status"] . "</td>";
+                echo "<td><a href='read.php?id=" . $row["menu_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["menu_id"] . "'><i class='bx bx-edit' ></i></a></td>";
                 echo "</tr>";
            }
         } else {
