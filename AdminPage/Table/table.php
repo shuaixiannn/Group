@@ -52,6 +52,7 @@
                 echo "<td>" . $row["table_id"] . "</td>";
                 echo "<td>" . $row["name"] . "</td>";
                 echo "<td>" . $row["capacity"] . "</td>";
+                echo "<td>" . $row["status"] . "</td>";
                 echo "<td><a href='read.php?id=" . $row["table_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["table_id"] . "'><i class='bx bx-edit' ></i></a></td>";
                 echo "</tr>";
             }
