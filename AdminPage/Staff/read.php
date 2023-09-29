@@ -41,7 +41,8 @@
         echo "<p><strong>Email:</strong> " . $row["staff_email"] . "</p><br>";
         echo "<p><strong>Contact Number:</strong> " . $row["staff_contact"] . "</p><br>";
         echo "<p><strong>Position :</strong> " . $row["position"] . "</p><br>";
-        echo "<p><strong>Hire Date&Time:</strong> " . $row["staff_hiredate"] . "</p></form>";
+        echo "<p><strong>Hire Date&Time:</strong> " . $row["staff_hiredate"] . "</p><br>";
+        echo "<p><strong>Status:</strong> " . $row["status"] . "</p></form>";
     } else {
         echo "Staff not found";
     }
