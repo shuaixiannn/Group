@@ -1,0 +1,339 @@
+CREATE TABLE admin (
+    admin_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    admin_email VARCHAR(100),
+    admin_password VARCHAR(255)
+);
+
+CREATE TABLE customer (
+    cust_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cust_name VARCHAR(100) NOT NULL,
+    cust_email VARCHAR(100) NOT NULL,
+    cust_contact VARCHAR(20) NOT NULL,
+    cust_password VARCHAR(100) NOT NULL,
+    cust_reg_date DATETIME
+);
+
+CREATE TABLE menu (
+    menu_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    menu_name VARCHAR(100) NOT NULL,
+    menu_desc TEXT NOT NULL,
+    menu_price DECIMAL(10, 2) NOT NULL,
+    category VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE tables (
+    table_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    capacity INT(11) NOT NULL
+);
+
+CREATE TABLE orders (
+    order_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cust_id INT(11),
+    table_id INT(11),
+    order_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cust_id) REFERENCES customer(cust_id),
+    FOREIGN KEY (table_id) REFERENCES tables(table_id)
+);
+
+CREATE TABLE order_food (
+    order_food_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    order_id INT(11) NOT NULL,
+    menu_id INT(11) NOT NULL,
+    quantity INT(11) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (menu_id) REFERENCES menu(menu_id)
+);
+
+CREATE TABLE staff (
+    staff_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    staff_name VARCHAR(100) NOT NULL,
+    staff_email VARCHAR(100) NOT NULL,
+    staff_contact INT(20) NOT NULL,
+    position VARCHAR(100) NOT NULL,
+    staff_password VARCHAR(30) NOT NULL,
+    staff_hiredate DATETIME
+);
+
+CREATE TABLE reservations (
+    reservation_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    contact INT(10) NOT NULL,
+    reservation_date DATE NOT NULL,
+    reservation_time TIME NOT NULL,
+    table_id INT,
+    FOREIGN KEY (table_id) REFERENCES tables(table_id)
+);
+
+
+INSERT into admin (admin_email, admin_password)
+VALUES (zixian@gmail.com, 123);
+
+INSERT into staff (staff_name, staff_email, staff_contact, position, staff_password)
+VALUES (calvin, calvin@gmail.com, 0123456789, 123);
+
+INSERT into customer (cust_name, cust_email, cust_contact, cust_password)
+VALUES (zixian, zixian@gmail.com, 0123456789, 123)
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Namyu Fried Pork Belly', 'The marinated pork is then expertly fried to achieve a crispy and golden exterior.', 29.80, 'Appetizer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Crispy Chicken Cheese Fondue', 'It combines the irresistible crunch of perfectly fried chicken with the creamy indulgence of cheese fondue.', 49.80, 'Appetizer');
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Mushroom Soup', 'This savory and velvety soup is crafted from a medley of fresh mushrooms.', 17.80, 'Soup');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Tomato Bacon Soup', 'It is a delectable twist on the classic tomato soup, infused with the smoky and savory essence of crispy bacon.', 19.80, 'Soup');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Potato & Cheese Soup', 'Flavors of potatoes and the indulgence of cheese.', 18.80, 'Soup');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Garden Salad', 'A colorful assortment of lettuce, juicy tomatoes, crunchy cucumbers, and other seasonal produce.', 18.80, 'Salad');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Signature Belly Salad', 'One-of-a-kind culinary masterpiece that celebrates the essence of succulent belly cuts.', 18.80, 'Salad');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Duck Salad', 'Succulent and tender slices of roasted or seared duck take center stage, providing a rich and savory base.', 29.80, 'Salad');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Bolognese Chicken Spaghetti', 'The spaghetti sauce made from tomatoes,minced beef,garlic,wine and herbs.', 28.80, 'Pasta');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Carbonara Bacon Spaghetti', 'The sauce made from creamy eggs,grated cheese and crispy bacon.', 29.80, 'Pasta');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Macaroni Pork & Cheese', 'The spaghetti's sauce combines the creamy goodness of cheese with the savory delight of tender pork.', 29.80, 'Pasta');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Marinara Pork Lasagna', 'Each layer is generously smothered in creamy ricotta and mozzarella cheese.', 33.80, 'Pasta');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Alfredo Pork Spaghetti', 'A mouthwatering fusion of succulent pork, creamy Alfredo sauce, and perfectly cooked pasta, offering a delightful blend of Italian and savory flavors in every bite.', 38.80, 'Pasta');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Signature Pork Burger', 'The succulent and flavorful patty made from premium ground pork, seasoned to perfection, and served on a toasted artisan bun with a medley of fresh toppings and a delectable special sauce.', 23.80, 'Burger');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Classic Beef Burger', 'It nestled between two soft and toasted buns, accompanied by traditional toppings like lettuce, tomato, pickles, and a dollop of ketchup and mustard.', 23.80, 'Burger');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Big Brother Pork Burger', 'It is an indulgent and hearty creation, featuring an extra-large, thick, and juicy pork patty topped with savory bacon, melted cheese, grilled onions, and a zesty barbecue sauce, all encased within a substantial toasted bun.', 34.80, 'Burger');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lamb Burger', 'It offers a delightful twist on the classic, with a tender and flavorful lamb patty seasoned with aromatic herbs and spices, complemented by a refreshing mint yogurt sauce and served on a soft, warm bun.', 23.80, 'Burger');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Salted Egg Yolk Chicken Burger', 'It presents a delectable combination of crispy and succulent fried chicken, coated in a lusciously rich and creamy salted egg yolk sauce, nestled within a toasted bun, and topped with fresh lettuce for a delightful contrast of flavors and textures.', 23.80, 'Burger');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Crackling Pork 300G', 'It is a sumptuous dish featuring a generous portion of succulent and tender pork with irresistibly crispy and golden crackling on top, offering a mouthwatering blend of textures and flavors.', 44.80, 'Snacks');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Garlic & Cheese Toast', 'It is a heavenly delight of perfectly toasted bread, generously infused with garlic butter and adorned with a rich layer of melted cheese, creating a flavorful and comforting treat.', 13.80, 'Snacks');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ( 'Mashed Potato & Bacon', 'It is a delightful side dish that combines velvety smooth mashed potatoes with the smoky and savory goodness of crispy bacon bits, creating a comforting and indulgent flavor combination.', 17.80, 'Snacks');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Spring Rolls', 'It delicate rice paper or wheat flour wrapper filled with a delicious combination of vegetables, meat, and sometimes vermicelli noodles, perfect for dipping in a savory sauce.', 18.80, 'Snacks');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Crispy Sweet Potato', 'It offers a delectable twist on a classic favorite, with thinly sliced sweet potato pieces fried to perfection, resulting in a delightful crunchy and slightly sweet snack.', 16.80, 'Snacks');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Crispy Chicken Wings', 'It boasting tender and juicy chicken coated in a flavorful and crunchy outer layer, making them a perfect finger-licking treat for any occasion.', 26.80, 'Snacks');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Signature Premium Australian Angus Beef Rib Eye', 'It is an exceptional cut of tender and marbled meat, known for its rich and buttery flavor, offering an unparalleled dining experience for beef connoisseurs.', 248.80, 'Chilled Beef');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Signature Pork Belly', 'It is a culinary masterpiece, featuring succulent and melt-in-your-mouth pork with crispy crackling skin, delivering a harmonious blend of textures and flavors in every savory bite.', 38.80, 'Pork');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Crispy Nacho Riblets', 'It tantalizing fusion of tender and flavorful riblets coated in a crunchy nacho-inspired crust, bringing together the zesty taste of nachos with the satisfaction of juicy ribs.', 62.80, 'Pork');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Sticky Ribs', 'It delectable indulgence, featuring tender and succulent ribs slathered in a finger-licking sticky glaze, delivering a delightful blend of sweet and savory flavors in each mouthwatering bite.', 63.80, 'Pork');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Barbeque Lamb Shoulder', 'It boasting a tender and flavorful cut of lamb, slow-cooked to perfection on the grill, resulting in a smoky and succulent dish that's perfect for any gathering.', 46.80, 'Lamb');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Grilled Boneless Chicken Thigh', 'It is a delicious and juicy dish, showcasing tender and flavorful chicken thighs, expertly grilled to perfection, creating a delightful and versatile meal option.', 27.80, 'Chicken');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Butterfish Florentine', 'It is an exquisite seafood dish that features tender butterfish fillets smothered in a creamy spinach and cheese sauce, offering a harmonious blend of delicate flavors and textures.', 39.80, 'Fish');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Seabass Fish & Chips', 'It is a delectable twist on a classic favorite, featuring crispy and golden-brown seabass fillets served with perfectly seasoned fries, providing a delightful seafood experience.', 34.80, 'Fish');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Pan Seared Salmon', 'It is a gourmet delight, showcasing a succulent and perfectly cooked salmon fillet with a crispy seared exterior, accompanied by a delightful array of complementary flavors.', 68.80, 'Fish');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Signature Pork Pizza', 'A combination of tender pork, savory toppings, and a perfect blend of cheeses on a crispy and flavorful crust, delivering a delightful taste experience.', 39.80, 'Hand Stretched');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Shroom Pork Pizza', 'Chicken,Bacon & Spinach', 43.80, 'Hand Stretched');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Truffle & Mushroom', 'Shiitake, Eringi & Truffle Jam', 43.80, 'Hand Stretched');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lamb & Cheese', 'Lamb,Onion & Mint', 38.80, 'Hand Stretched');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Hawaiian Bacon', 'Pineapple & Bacon', 39.80, 'Hand Stretched');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Angus & Truffle Pizza', 'Premium Chilled Ribeye & Truffle Jam', 78.80, 'Hand Stretched');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Chef's Veggie Pizza', 'Baby Spinach,Broccoli,Oilves', 36.80, 'Hand Stretched');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Mint & Chocolate', 'It is a heavenly pairing, where refreshing mint meets rich, velvety chocolate, creating a delightful and indulgent flavor combination that leaves a lasting impression.', 14.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Chocolate Banana', 'It is a delectable treat that marries the creamy sweetness of ripe bananas with the luscious richness of chocolate, offering a delightful and comforting dessert experience.', 14.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Blended Cafe Mocha', 'It featuring a perfect fusion of rich espresso, creamy milk, and decadent chocolate, blended to a smooth and satisfying perfection.', 14.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Matcha Green Tea', 'It is a vibrant and earthy Japanese delicacy, finely ground from shade-grown green tea leaves, offering a unique and invigorating flavor that captivates the senses.', 14.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Irish Coffee', 'It is a classic and comforting concoction, marrying the rich flavors of hot coffee, smooth Irish whiskey, and a velvety layer of whipped cream, creating a delightful and warming drink.', 14.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Cotton Candy', 'It is a whimsical and sugary delight, featuring colorful spun sugar threads that melt in your mouth, evoking a nostalgic and delightful experience.', 14.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Cookie & Cream', 'It is a delectable and indulgent combination, fusing creamy vanilla ice cream with crunchy chocolate cookie crumbles, creating a delightful dessert that satisfies every sweet craving.', 15.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Yogurt Berry', 'It is a refreshing and wholesome treat, pairing creamy yogurt with a medley of fresh and tangy berries, delivering a delightful burst of flavors and a nutritious experience.', 15.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Berry Strawberry', 'It is a delightful and juicy combination of succulent strawberries and other mixed berries, offering a burst of sweetness and a medley of vibrant flavors in every bite.', 15.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Black & Pink', 'It is a delightful and visually striking beverage, blending the rich flavors of blackberries with the creamy sweetness of pink raspberry, resulting in a refreshing and luscious treat.', 15.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Choco Rum & Raisin', 'It is a luxurious and indulgent flavor combination, featuring velvety chocolate ice cream infused with the rich taste of rum and studded with plump raisins, delivering a delightful dessert experience.', 15.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lotus Biscoff Caramel', 'It is a delectable delight, combining the irresistible flavor of Lotus Biscoff cookies with a luscious caramel swirl, creating a heavenly ice cream experience that's simply irresistible.', 15.80, 'Ice Blended');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Blend Vanilla Latte Caramel', 'It is a creamy and decadent coffee beverage, harmoniously blending smooth vanilla, rich espresso, and sweet caramel for a delightful and satisfying drink.', 15.80, 'Ice Blended');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Jasmine Green', 'It is an enchanting and fragrant brew, infusing the delicate floral aroma of jasmine flowers with the refreshing and soothing taste of green tea, providing a calming and delightful tea experience.', 11.80, 'Pot Of Tea');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lemon & Ginger', 'It is a zesty and invigorating flavor pairing, combining the tangy freshness of lemon with the warm and spicy kick of ginger, creating a refreshing and revitalizing beverage.', 11.80, 'Pot Of Tea');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Green Tea', 'It is a soothing and antioxidant-rich brew, derived from unoxidized tea leaves, offering a delicate and grassy flavor that promotes a sense of tranquility and well-being.', 11.80, 'Pot Of Tea');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Americano', 'It is a bold and invigorating coffee drink, consisting of a shot or two of espresso diluted with hot water, delivering a robust and rich flavor with a smooth finish.', 8.80, 'Coffee');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Affogato', 'It is a heavenly dessert, combining a scoop of creamy vanilla ice cream with a hot shot of espresso poured over the top, creating a delightful contrast of temperatures and flavors that's simply irresistible.', 16.80, 'Coffee');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Cappuccino', 'It is a classic coffee favorite, comprising a perfect balance of rich espresso, steamed milk, and a velvety layer of frothy milk foam, offering a delightful and creamy coffee experience.', 11.80, 'Coffee');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Watermelon Peach', 'It is a refreshing and juicy fusion, bringing together the thirst-quenching sweetness of watermelon with the delightful tang of ripe peaches, creating a perfect summer flavor combination.', 15.80, 'Frosty Fruity');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Pineapple Passion', 'It is a tropical delight, marrying the juicy and tropical sweetness of pineapple with the vibrant and exotic flavors of passion fruit, resulting in a refreshingly delightful taste experience.', 15.80, 'Frosty Fruity');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Yuzu Lemonade', 'This  beverage crafted from the aromatic and tangy Japanese yuzu fruit, providing a unique and zesty flavor experience.', 13.80, 'Bubbly');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Passion Grapefruit', 'It  is a tantalizing blend of sweet and tangy flavors, combining the tropical essence of passion fruit with the refreshing zest of grapefruit', 13.80, 'Bubbly');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Mango Peach', 'It is a luscious fusion of succulent mango and juicy peach, resulting in a harmonious and tropical medley of flavors that exude sweetness and refreshment.', 13.80, 'Bubbly');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Love Me Lychee', 'It infusing the captivating taste of lychee with a hint of floral essence, providing a unique and alluring beverage experience.', 13.80, 'Bubbly');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Honey Lemon', 'It is a soothing and comforting blend that combines the natural sweetness of honey with the zesty brightness of lemon, offering a warm and invigorating beverage perfect for any occasion.', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lychee Pink Tea', 'It is a delicate and aromatic blend that artfully marries the gentle floral notes of lychee with the subtle elegance of pink tea, delivering a delightful and rosy-hued sipping experience.', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Peachy Mango Tea', 'It is a harmonious infusion of ripe, juicy peaches and tropical mangoes with premium tea leaves, creating a delightful and fruity beverage that's both refreshing and satisfying.', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lemon Iced Tea', 'It is a cool and invigorating drink that combines the classic taste of freshly brewed tea with a zingy burst of citrusy lemon', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Mint Iced Tea', 'It is a refreshing and revitalizing beverage that harmoniously blends the invigorating taste of fresh mint leaves with the cooling and soothing qualities of chilled tea', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES (7'Peppermint Lemonade', 'It is a tantalizing and invigorating fusion of zesty lemonade with the cool and refreshing essence of peppermint', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Flower Passion', 'It is an enchanting and aromatic blend that captivates the senses with its infusion of passion fruit and delicate floral notes', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Berry Green Tea', 'It is a delightful and antioxidant-rich fusion that harmonizes the earthy tones of green tea with the vibrant sweetness of mixed berries', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Chocolate', 'It is a velvety and invigorating drink that blends the delightful taste of chocolate with a refreshing icy shake', 12.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Milo Dinosour', 'It is a nostalgic and delightful beverage made by adding an extra heap of Milo powder atop a cold glass of Milo, offering a chocolatey and energizing treat that's loved by many.', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Mineral Water', 'Natural and refreshing drink.', 3.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Classic Milk Tea', 'It blends strong black tea with creamy milk and a touch of sweetness', 5.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Filteres Water', 'It is purified through a filtration process to remove impurities, contaminants, and odors, resulting in a clean and crisp-tasting drinking water that is free from harmful substances.', 0.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Add Lemon', 'Enhancing the drink flavor.', 0.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Coke/Coke Zero/A&W Can', 'Soft Drink', 5.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Root Beer Float', 'It is a delightful and nostalgic treat made by combining creamy vanilla ice cream with fizzy and flavorful root beer', 13.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Watermelon Juice', 'Made from the ripe and juicy flesh of watermelon', 10.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Papaya Milk', 'The drink blending the luscious taste of ripe papaya with milk', 11.80, 'Iced Shaken');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Pineapple Juice', 'Drink extracted from ripe pineapples', 10.80, 'Iced Shaken');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Strawberry Mojito', 'It is a fruity and refreshing cocktail that combines muddled strawberries with mint leaves, lime juice, sugar, and rum, creating a delightful and summery twist on the classic mojito.', 28.80, 'House Cocktail');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Mango Pina Colada', 'It is a tropical and creamy cocktail that blends the sweetness of mango with coconut cream and pineapple juice', 28.80, 'House Cocktail');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Berry Punch', 'It is a vibrant and fruity beverage made by mixing an assortment of fresh berries with fruit juices', 28.80, 'House Cocktail');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Passion Sangria', 'It is a luscious and exotic twist on the classic sangria, incorporating passion fruit juice and tropical fruits', 28.80, 'House Cocktail');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Long Island Ice Tea', 'It is a potent and boozy cocktail that combines several spirits, including vodka, rum, tequila, gin, and triple sec, with sour mix and cola', 28.80, 'House Cocktail');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Espresso Martini', 'It is a sophisticated and energizing cocktail that blends rich espresso with vodka, coffee liqueur, and a touch of sugar', 28.80, 'House Cocktail');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Lychee Berry Margarita', 'It is a delightful and fruity twist on the classic margarita, featuring the sweetness of lychee fruit combined with a medley of fresh berries, tequila, and lime juice', 28.80, 'House Cocktail');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Vanilla Ice Cream', 'Adding ice cream on top will change the taste of the drink', 6.80, 'Ice Cream');
+
+
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Blanc 1664 Draught Pint', 'It is a smooth and crisp French beer that boasts a delicate blend of floral and citrus note', 39.80, 'Beer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Connor's Stout Draught Pint', 'It is a rich and velvety Malaysian beer with a smooth roasted malt flavor and a creamy head', 38.80, 'Beer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Carlsberg Smooth Draught 300ML', 'It was a popular and well-known Danish beer, characterized by its balanced taste, light bitterness', 19.80, 'Beer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Carlsberg Smooth Draught 325ML', 'It was a popular and well-known Danish beer, characterized by its balanced taste, light bitterness', 16.80, 'Beer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Somersby Apple Bottle 330ML', 'It is a delightful and fruity cider brand known for its refreshing and crisp apple or other fruit flavors', 15.80, 'Beer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Heineken Larger Bottle 325ML', 'It is a renowned Dutch beer brand, distinguished by its pale golden color, balanced taste, and distinct hoppy aroma', 17.80, 'Beer');
+INSERT INTO menu (menu_name, menu_desc, menu_price, category)
+VALUES ('Tiger Asian Larger Bottle 325ML', 'It is a popular Asian lager, known for its smooth and easy-drinking profile with a balanced blend of malt and hops', 16.80, 'Beer');
+
+INSERT INTO tables (name, capacity)
+VALUES ('Table 1', 2);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 2', 2);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 3', 2);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 4', 4);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 5', 4);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 6', 4);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 7', 6);
+INSERT INTO menu (name, capacity)
+VALUES ('Table 8', 6);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 9', 6);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 10', 8);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 11', 8);
+INSERT INTO tables (name, capacity)
+VALUES ('Table 12', 8);
