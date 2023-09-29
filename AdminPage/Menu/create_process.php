@@ -13,9 +13,10 @@ $menu_name = $_POST['menu_name'];
 $menu_desc = $_POST['menu_desc'];
 $menu_price = $_POST['menu_price'];
 $category = $_POST['category'];
+$status = $_POST['status'];
 
 // Insert the new customer into the database
-$sql = "INSERT INTO menu (menu_id, menu_name, menu_desc, menu_price, category) VALUES ('$menu_id', '$menu_name', '$menu_desc', '$menu_price', '$category')";
+$sql = "INSERT INTO menu (menu_id, menu_name, menu_desc, menu_price, category, status) VALUES ('$menu_id', '$menu_name', '$menu_desc', '$menu_price', '$category','$status')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: menu.php");
