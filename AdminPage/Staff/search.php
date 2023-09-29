@@ -5,7 +5,7 @@ include '../db.php';
 // Handle the search query
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
-    $sql = "SELECT * FROM staff WHERE staff_id LIKE '%$search%' OR staff_name LIKE '%$search%' OR staff_email LIKE '%$search%' OR staff_contact LIKE '%$search%' OR position LIKE '%$search%' OR staff_hiredate LIKE '%$search%'";
+    $sql = "SELECT * FROM staff WHERE staff_id LIKE '%$search%' OR staff_name LIKE '%$search%' OR staff_email LIKE '%$search%' OR staff_contact LIKE '%$search%' OR position LIKE '%$search%' OR staff_hiredate LIKE '%$search%' OR status LIKE '%$search%'";
     $result = $conn->query($sql);
 }
 
@@ -50,6 +50,7 @@ if (isset($_GET['search'])) {
                 <th>Contact Number</th>
                 <th>Position</th>
                 <th>Hire Date</th>
+                <th>Status</th>
                 <th style="width: 190px;">Action</th>
             </tr>
 
@@ -70,7 +71,8 @@ if (isset($_GET['search'])) {
                     echo "<td>" . $row["staff_contact"] . "</td>";
                     echo "<td>" . $row["position"] . "</td>";
                     echo "<td>" . $row["staff_hiredate"] . "</td>";
-                    echo "<td><a href='read.php?id=" . $row["staff_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["staff_id"] . "'><i class='bx bx-edit'></i></a> | <a href='delete.php?id=" . $row["staff_id"] . "'><i class='bx bx-trash'></i></a></td>";
+                    echo "<td>" . $row["status"] . "</td>";
+                    echo "<td><a href='read.php?id=" . $row["staff_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["staff_id"] . "'><i class='bx bx-edit'></i></a></td>";
                     echo "</tr>";
                 }
             } else {
