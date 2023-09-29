@@ -41,6 +41,11 @@
         echo "Description: <input type='text' name='menu_desc' value='" . $row["menu_desc"] . "'><br>";
         echo "Price: <input type='number' name='menu_price' value='" . $row["menu_price"] . "'><br>";
         echo "Category: <input type='text' name='category' value='" . $row["category"] . "'><br>";
+        echo "Status: 
+            <select name='status'>
+                <option value='Available' " . ($row["status"] == "Available" ? "selected" : "") . ">Available</option>
+                <option value='Discontinued' " . ($row["status"] == "Discontinued" ? "selected" : "") . ">Discontinued</option>
+              </select><br>";
         echo "<input type='hidden' name='menu_id' value='" . $row["menu_id"] . "'>";
         echo "<input type='submit' value='Update'>";
         echo "</form>";
