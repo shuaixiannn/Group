@@ -50,6 +50,12 @@
             echo "Position: <input type='text' name='position' value='" . $row["position"] . "'><br>";
             echo "Password: <input type='password' id='myInput' name='staff_password' value='" . $row["staff_password"] . "'><br>";
             echo "<input type='checkbox' onclick='myFunction()'>Show Password<br><br>";
+             echo "Status: 
+            <select name='status'>
+                <option value='Active' " . ($row["status"] == "Active" ? "selected" : "") . ">Active</option>
+                <option value='Retired' " . ($row["status"] == "Retired" ? "selected" : "") . ">Retired</option>
+                <option value='Resigned' " . ($row["status"] == "Resigned" ? "selected" : "") . ">Resigned</option>
+              </select><br>";
             echo "<input type='hidden' name='staff_id' value='" . $row["staff_id"] . "'>";
             echo "<input type='submit' value='Update'>";
             echo "</form>";
