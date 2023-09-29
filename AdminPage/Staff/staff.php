@@ -59,6 +59,7 @@
                 echo "<td>" . $row["staff_email"] . "</td>";
                 echo "<td>" . $row["staff_contact"] . "</td>";
                 echo "<td>" . $row["position"] . "</td>";
+                echo "<td>" . $row["status"] . "</td>";
                 echo "<td><a href='read.php?id=" . $row["staff_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["staff_id"] . "'><i class='bx bx-edit' ></i></a></td>";
                 echo "</tr>";
             }
