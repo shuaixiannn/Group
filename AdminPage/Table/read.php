@@ -36,7 +36,8 @@
         // Display table details
         echo "<form><p><strong>Table ID:</strong> " . $row["table_id"] . "</p><br>";
         echo "<p><strong>Name:</strong> " . $row["name"] . "</p><br>";
-        echo "<p><strong>Capacity:</strong> " . $row["capacity"] . "</p></form>";
+        echo "<p><strong>Capacity:</strong> " . $row["capacity"] . "</p><br>";
+        echo "<p><strong>Status:</strong> " . $row["status"] . "</p></form>";
     } else {
         echo "Table not found";
     }
