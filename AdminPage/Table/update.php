@@ -37,6 +37,11 @@
         echo "<form action='update_process.php' method='POST'>";
         echo "Name: <input type='text' name='name' value='" . $row["name"] . "'><br>";
         echo "Capacity: <input type='number' name='capacity' value='" . $row["capacity"] . "'><br>";
+        echo "Status: 
+            <select name='status'>
+                <option value='Available' " . ($row["status"] == "Available" ? "selected" : "") . ">Available</option>
+                <option value='Not Available' " . ($row["status"] == "Not Available" ? "selected" : "") . ">Not Available</option>
+              </select><br>";
         echo "<input type='hidden' name='table_id' value='" . $row["table_id"] . "'>";
         echo "<input type='submit' value='Update'>";
         echo "</form>";
