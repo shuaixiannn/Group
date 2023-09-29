@@ -39,6 +39,11 @@
         Menu Description: <input type="text" name="menu_desc"><br>
         Menu Price: <input type="number" id="myInput" name="menu_price"><br>
         Category: <input type="text" name="category"><br>
+        Status: 
+    <select name="status">
+        <option value="Available">Available</option>
+        <option value="Discontinued">Discontinued</option>
+    </select><br>
         <input type="submit" value="Create">
     </form>
     
