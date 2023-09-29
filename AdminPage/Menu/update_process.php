@@ -9,9 +9,10 @@ $menu_name = $_POST['menu_name'];
 $menu_desc = $_POST['menu_desc'];
 $menu_price = $_POST['menu_price'];
 $category = $_POST['category'];
+$status = $_POST['status'];
 
 // Update the menu in the database
-$sql = "UPDATE menu SET menu_name = '$menu_name', menu_desc = '$menu_desc', menu_desc = '$menu_desc', menu_price ='$menu_price', category = '$category' WHERE menu_id = '$menu_id'";
+$sql = "UPDATE menu SET menu_name = '$menu_name', menu_desc = '$menu_desc', menu_desc = '$menu_desc', menu_price ='$menu_price', category = '$category', status = '$status' WHERE menu_id = '$menu_id'";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: menu.php");
