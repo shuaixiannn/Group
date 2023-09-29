@@ -10,9 +10,11 @@ $staff_email = $_POST['staff_email'];
 $staff_contact = $_POST['staff_contact'];
 $position = $_POST['position'];
 $staff_password = $_POST['staff_password'];
+$status = $_POST['status'];
+
 
 // Update the staffomer in the database
-$sql = "UPDATE staff SET staff_name = '$staff_name', staff_email = '$staff_email', staff_contact = '$staff_contact', position = '$position', staff_password = '$staff_password' WHERE staff_id = '$staff_id'";
+$sql = "UPDATE staff SET staff_name = '$staff_name', staff_email = '$staff_email', staff_contact = '$staff_contact', position = '$position', staff_password = '$staff_password', status = '$status' WHERE staff_id = '$staff_id'";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: staff.php");
