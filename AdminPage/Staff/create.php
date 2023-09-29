@@ -33,6 +33,12 @@
         Contact Number: <input type="tel" name="staff_contact"><br>
         Position: <input type="text" name="position"><br>
         Password: <input type="password" id="myInput" name="staff_password"><br>
+        Status:  
+        <select name="status">
+        <option value="Active">Active</option>
+        <option value="Retired">Retired</option>
+        <option value="Resigned">Resigned</option>
+    </select><br>
         <input type="checkbox" onclick="myFunction()">Show Password<br><br>
         <input type="submit" value="Create">
     </form>
