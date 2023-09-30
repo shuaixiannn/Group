@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    // Validate table selection
     $input_table = trim($_POST["table"]);
-    if (empty($input_table) || !in_array($input_table, range(1, 10))) {
-        $table_err = "Please select a valid table (1 to 10).";
+    if (empty($input_table) || !in_array($input_table, range(1, 12))) {
+        $table_err = "Please select a valid table (1 to 12).";
     } else {
         $table = $input_table;
     }
@@ -447,10 +447,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="invalid-feedback"><?php echo $num_guests_err; ?></span>
                 </div>
                 <div class="form-group">
-                    <label for="table">Table Number (1 to 10)</label>
+                    <label for="table">Table Number (1 to 12)</label>
                     <select id="table" name="table" class="form-control<?php echo (!empty($table_err)) ? 'is-invalid' : ''; ?>" required>
                         <?php
-                        for ($i = 1; $i <= 10; $i++) {
+                        for ($i = 1; $i <= 12; $i++) {
                             // Define the table capacities (you can set them to any values you like)
                             $table_capacities = [
                             1 => 4,
@@ -463,6 +463,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             8 => 10,
                             9 => 10,
                             10 => 10,
+                            11 => 12,
+                            12 => 12,
                             ];
             
                             // Check if the current table number matches the selected table
