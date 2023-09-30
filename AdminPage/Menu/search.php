@@ -50,6 +50,7 @@ if (isset($_GET['search'])) {
             <th>Description</th>
             <th>Price</th>
             <th>Category</th>
+            <th>Status</th>
             <th style="width: 100px;">Action</th>
         </tr>
         <?php
@@ -67,15 +68,23 @@ if (isset($_GET['search'])) {
                 echo "<td>" . $row["menu_desc"] . "</td>";
                 echo "<td>" . $row["menu_price"] . "</td>";
                 echo "<td>" . $row["category"] . "</td>";
-                echo "<td><a href='read.php?id=" . $row["menu_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["menu_id"] . "'><i class='bx bx-edit' ></i></a> | <a href='delete.php?id=" . $row["menu_id"] . "'><i class='bx bx-trash' ></i></a></td>";
-                echo "</tr>";
-           }
-        } else {
-           echo "<tr><td colspan='6'>No menu found</td></tr>";
-        }
+                echo "<td>";
+                 if ($row["menu_status"] == 1) {
+                        echo '<p><a href="status.php?menu_id=' . $row['menu_id'] . '&menu_status=0">Available</a></p>';
+                    } else {
+                        echo '<p><a href="status.php?menu_id=' . $row['menu_id'] . '&menu_status=1">Discontinued</a></p>';
+                    }
 
-        $conn->close();
-        ?>
+                    echo "</td>";
+                    echo "<td><a href='read.php?id=" . $row["menu_id"] . "'><i class='bx bx-spreadsheet'></i></a> | <a href='update.php?id=" . $row["menu_id"] . "'><i class='bx bx-edit' ></i></a></td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>No menu found</td></tr>";
+            }
+
+            $conn->close();
+            ?>
         
     </table>
     </section>
