@@ -38,7 +38,20 @@
             Name: <input type="text" name="name" required><br>
             Contact: <input type="text" name="contact" required><br>
             Reservation Date: <input type="date" name="reservation_date" required><br>
-            Reservation Time: <input type="time" name="reservation_time" required><br>
+
+            <!-- Dropdown for Reservation Time -->
+            Reservation Time:
+            <select name="reservation_time" required>
+                <option value="06:00">6:00 PM</option>
+                <option value="07:00">7:00 PM</option>
+                <option value="08:00">8:00 PM</option>
+                <option value="09:00">9:00 PM</option>
+                <option value="10:00">10:00 PM</option>
+                <option value="11:00">11:00 PM</option>
+                <option value="12:00">12:00 PM</option>
+                <!-- Add more options for available times as needed -->
+            </select><br>
+
             Table Number: <input type="number" name="table_id" required><br>
             <input type="submit" value="Create">
         </form>
