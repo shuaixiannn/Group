@@ -19,14 +19,14 @@ CREATE TABLE menu (
     menu_desc TEXT NOT NULL,
     menu_price DECIMAL(10, 2) NOT NULL,
     category VARCHAR(50) NOT NULL,
-    status VARCHAR(255) NOT NULL
+    menu_status ENUM('Available','Discontinued') NOT NULL
 );
 
 CREATE TABLE tables (
     table_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(20) NOT NULL,
     capacity INT(11) NOT NULL,
-    status VARCHAR(255) NOT NULL
+    table_status ENUM('Available','Not Available') NOT NULL
 );
 
 CREATE TABLE orders (
@@ -55,7 +55,7 @@ CREATE TABLE staff (
     position VARCHAR(100) NOT NULL,
     staff_password VARCHAR(30) NOT NULL,
     staff_hiredate DATETIME,
-    status VARCHAR(255) NOT NULL
+    staff_status ENUM('Active','Retired','Resigned') NOT NULL
 );
 
 CREATE TABLE reservations (
