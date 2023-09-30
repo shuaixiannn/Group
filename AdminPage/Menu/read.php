@@ -40,7 +40,8 @@
         echo "<p><strong>Menu Name:</strong> " . $row["menu_name"] . "</p><br>";
         echo "<p><strong>Description:</strong> " . $row["menu_desc"] . "</p><br>";
         echo "<p><strong>Price:</strong> " . "RM " . $row["menu_price"] . "</p><br>";
-        echo "<p><strong>Category:</strong> " . $row["category"] . "</p></form>";
+        echo "<p><strong>Category:</strong> " . $row["category"] . "</p><br>";
+        echo "<p><strong>Status:</strong> " . $row["menu_status"] . "</p></form>";
     } else {
         echo "Menu not found";
     }
