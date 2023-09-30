@@ -89,25 +89,21 @@ session_start();
       <div class="header">
           <a href="index.php" class="header-logo">Dashboard</a>
       </div>
-      <div class="box-info">
-        <div class="box">
-          <span class="icon"><i class='bx bxs-calendar-check'></i></span>
-          <div class="text">
-            <p>Food Order</p>
-            <?php
-            $checkOrderResult = mysqli_query($conn, "SELECT COUNT(*) as count FROM orders;");
-            $row = mysqli_fetch_assoc($checkOrderResult);
-
-           echo $row['count'];
-
-              
-            ?>
-          </div>
-        </div>
+      
+      <!--Report PDF-->
+      <br>
+      <a href="Report/report-pdf.php">
+            <button type="button">
+            <i style="color: #fff;" class='bx bx-plus'></i>
+            <span>Generate Report PDF</span>
+            </button>
+      </a>
+      
+    <div class="box-info">
         <div class="box">
           <span class="icon"><i class='bx bxs-group' ></i></span>
           <div class="text">
-            <p>Members</p>
+            <p>Total of Membership</p>
             <?php
             $custCountResult = mysqli_query($conn, "SELECT COUNT(cust_id) as count FROM customer;");
             $row = mysqli_fetch_assoc($custCountResult);
@@ -115,24 +111,50 @@ session_start();
             ?>
           </div>
         </div>
+
+        <div class="box">
+          <span class="icon"><i class='bx bxs-calendar-check'></i></span>
+          <div class="text">
+            <p>Daily Food Order</p>
+            <?php
+            $checkOrderResult = mysqli_query($conn, "SELECT COUNT(*) as count FROM orders;");
+            $row = mysqli_fetch_assoc($checkOrderResult);
+           echo $row['count'];
+            ?>
+          </div>
+        </div>
+
         <div class="box">
           <span class="icon"><i class='bx bxs-dollar-circle' ></i></span>
           <div class="text">
-            <p>Total Sales</p>
+            <p>Daily Total Sales</p>
             <?php
             $totalSalesResult = mysqli_query($conn, "SELECT SUM(total) as total FROM order_food;");
             $row = mysqli_fetch_assoc($totalSalesResult);
-
            echo $row['total'];
-
-              
             ?>
-            
           </div>
         </div>
-      </div>
+    </div>
+      
   </section>
 <style>
+/* Updated button styling */
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
 .box-info {
 	margin-top: 40px;
 	display: grid;
