@@ -123,12 +123,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body {
+        font: 14px sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-image: url("../assets/img/header-bg.jpg"); /* Replace 'path/to/your/image.jpg' with the actual path to your background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        position: relative; /* Add this to position pseudo-element relative to the body */
+    }
+
+    body::before {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.5) to control the darkness; 0 is fully transparent, 1 is fully opaque */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .wrapper {
+        width: 360px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        position: relative; /* Add this to ensure content is above the overlay */
+    }
          body{ font: 14px sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .wrapper{ width: 360px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; }
     </style>
 </head>
 <body>
     <div class="wrapper">
+        <div class="form-group text-center"> <!-- Centered div -->
+            <h1 class="navbar-brand" style="font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; color: #ffc800;">THE CHUBS GRILL</h1>
+        </div>
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
